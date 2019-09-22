@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
     }
 
     /**
@@ -35,7 +36,36 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'video' => 'required',
+            'category' => 'required',
+        ]);
+        // Handle file upload
+
+        if ($request->hasFile('video')) {
+            // Get file name with the extension
+            $filenameWithExt = $request->file('video')->getClientOriginalName();
+            // Get just file name
+            $fileName = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just the extension
+            $extension = $request->file('video')->getClientOriginalExtension();
+            // File nameto store
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            // Upload video
+            \Image::make($request->file('video'))->save(public_path('posts/') . $fileNameToStore);
+        } else {
+            return response()->json('error', 'video is required');
+        }
+        // Create Product
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->video = $fileNameToStore;
+        $post->user_id = auth()->user()->id;
+        $post->category_id = Category::findOrFail($request->input('category'));
+        $post->save();
+
+        return response()->json([200, 'success', 'Video successfully uploaded']);
     }
 
     /**

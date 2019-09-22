@@ -135,6 +135,7 @@
                     </li>
                 </ul>
             </div>
+            @guest
             <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs hidden-sm">
                   <div class="dropdown">
                     <a data-toggle="dropdown" href="#" class="user-area">
@@ -151,6 +152,7 @@
                     </ul>
                 </div>
             </div>
+            @endguest
         </div><!-- // row -->
     </div><!-- // container-full -->
   </header>

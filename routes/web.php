@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/10-upload', function () {
+    return view('upload');
+});
+Route::post('/categories', 'PostController@index')->name('getCategories');
+Route::post('/10-upload', 'PostController@store')->name('upload');

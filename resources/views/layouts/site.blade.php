@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ config('app.name')}}</title>
+        <title>{{ config('app.name', 'Freiptube')}}</title>
         <meta name="keywords" content="Blog website templates" />
         <meta name="description" content="Author - Personal Blog Wordpress Template">
         <meta name="author" content="Rabie Elkheir">

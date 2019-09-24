@@ -102,6 +102,7 @@
       <!--======= // log_in_page =======-->
 	</body>
 
+</html>
 
 <script src="/js/jquery-3.2.1.min.js"></script>
 
@@ -117,6 +118,7 @@ function sendData(){
 	let cpassword = document.getElementById('cpassword').value;
 	let gender = document.getElementById('gender').value;
 	let dob = document.getElementById('dob').value;
+	console.log(firstname)
 
 	if(typeof firstname === '' || firstname === 'undefined'){
 		alert('This field cannot be empty!');
@@ -124,6 +126,4 @@ function sendData(){
 }
 
 </script>
-
-</html>
 

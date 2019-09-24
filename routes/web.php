@@ -25,3 +25,4 @@ Route::get('/10-upload', function () {
 });
 Route::post('/categories', 'PostController@index')->name('getCategories');
 Route::post('/10-upload', 'PostController@store')->name('upload');
+Route::get('/logout', 'UserController@logout')->name('logout');

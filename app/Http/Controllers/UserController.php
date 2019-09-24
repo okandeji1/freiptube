@@ -46,9 +46,11 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6',
             'cpassword' => 'required|same:password',
+            'gender' => 'required',
+            'dob' => 'required',
         ]);
 
-        $data = $request->only(['firstname', 'lastname', 'email', 'password']);
+        $data = $request->only(['firstname', 'lastname', 'email', 'password', 'gender', 'dob']);
         $data['password'] = bcrypt($data['password']);
 
         $user = User::create($data);

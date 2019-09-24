@@ -22,7 +22,7 @@
             </div><!-- // col-md-3 -->
             <div class="col-lg-3 col-md-3 col-sm-5 hidden-xs hidden-sm">
                 <ul class="top-menu">
-                    <li><a href="01-home.html">home</a></li>
+                    <li><a href="@">home</a></li>
                     <li><a href="#">trending</a></li>
                     <li><a href="14-history.html">history</a></li>
                 </ul>
@@ -148,7 +148,7 @@
                        <li><a href="#"><i class="fa fa-edit color-1"></i>Edit profile</a></li>
                        <li><a href="#"><i class="fa fa-video-camera color-2"></i>add video</a></li>
                        <li><a href="#"><i class="fa fa-star color-3"></i>Favorites</a></li>
-                       <li><a href="#"><i class="fa fa-sign-out color-4"></i>sign out</a></li>
+                       <li><a href="/logout"><i class="fa fa-sign-out color-4"></i>sign out</a></li>
                     </ul>
                 </div>
             </div>

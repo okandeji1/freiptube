@@ -14,8 +14,14 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/login', function () {
+    return view('site/login');
+});
+Route::get('/register', function () {
+    return view('site/signup');
+});
 Route::get('/10-upload', function () {
-    return view('upload');
+    return view('user/upload');
 });
 Route::post('/categories', 'PostController@index')->name('getCategories');
 Route::post('/10-upload', 'PostController@store')->name('upload');

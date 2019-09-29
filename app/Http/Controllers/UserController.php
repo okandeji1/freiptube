@@ -11,9 +11,9 @@ class UserController extends Controller
     public function __construct()
     {
         if (Auth::User()) {
-            return redirect('/admin/dashboard');
+            return redirect('/');
         } else {
-            return redirect('/admin/gb-admin-login');
+            return redirect('/login');
         }
     }
 
@@ -32,9 +32,9 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $user->createToken('freiptube')->accessToken;
-            return response()->json([200, 'success', 'You have successfully logged in']);
+            return response()->json(['success' => 'You have successfully logged in']);
         } else {
-            return response()->json([401, 'error', 'Invalid email or password']);
+            return response()->json(['error' => 'Invalid email or password']);
         }
     }
 
@@ -57,7 +57,7 @@ class UserController extends Controller
 
         $user->createToken('freiptube')->accessToken;
 
-        return response()->json([200, 'success', 'Registration successful']);
+        return redirect('/')->with('success', 'Registration successful! Please update your profile and start uploading');
     }
 
     public function logout(Request $request)
@@ -69,6 +69,6 @@ class UserController extends Controller
             $this->guard()->logout();
         }
         Auth::logout();
-        return Redirect('/');
+        return Redirect('/login');
     }
 }

@@ -23,6 +23,8 @@ Route::get('/register', function () {
 Route::get('/10-upload', function () {
     return view('user/upload');
 });
+Route::post('/login', 'UserController@login')->name('login');
+Route::post('/register', 'UserController@register');
 Route::post('/categories', 'PostController@index')->name('getCategories');
 Route::post('/10-upload', 'PostController@store')->name('upload');
 Route::get('/logout', 'UserController@logout')->name('logout');

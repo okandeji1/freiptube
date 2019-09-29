@@ -6,14 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use uuids;
+    use Uuids;
+
+     /**
+      * Set auto-increamenting to false
+      *
+      * @var bool
+      */
+
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
 
-    public $incrementing = false;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
 
     protected $fillable = [
         'title', 'user_id', 'category_id'

@@ -27,6 +27,20 @@
                     <li><a href="14-history.html">history</a></li>
                 </ul>
             </div><!-- // col-md-4 -->
+            @guest
+            <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs hidden-sm">
+                  <div class="dropdown mr-3">
+                    <a data-toggle="dropdown" href="/login" class="user-area">
+                        <i class="fa fa-signin text-danger">Login</i>
+                    </a>
+                </div>
+                <div class="ml-5">
+                    <a data-toggle="dropdown" href="/login" class="user-area mr-5">
+                        <i class="fa fa-signin text-danger">SignUp</i>
+                    </a>
+                </div>
+            </div>
+            @else
             <div class="col-lg-2 col-md-2 col-sm-4 hidden-xs hidden-sm">
                 <ul class="notifications">
                     <li class="dropdown">
@@ -135,12 +149,11 @@
                     </li>
                 </ul>
             </div>
-            @guest
             <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs hidden-sm">
                   <div class="dropdown">
                     <a data-toggle="dropdown" href="#" class="user-area">
                         <div class="thumb"><img src="demo_img/user-1.png" alt=""></div>
-                        <h2>Rabie Elkheir</h2>
+                        <h2>{{Auth::user()->firstname}}</h2>
                         <h3>25 subscribers</h3>
                         <i class="fa fa-angle-down"></i>
                     </a>

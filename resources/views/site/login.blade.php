@@ -4,11 +4,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ config('app.name', 'Freiptube')}}</title>
         <meta name="keywords" content="Blog website templates" />
         <meta name="description" content="Author - Personal Blog Wordpress Template">
         <meta name="author" content="Rabie Elkheir">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSRF TOKEN -->
+        <meta name="csrf-token" content="{{csrf_token()}}">
+        <script>
+            window.Laravel = { csrfToken: '{{ csrf_token()}}'}
+        </script>
+
+        <title>{{ config('app.name', 'Freiptube')}}</title>
         <!-- Bootstrap Core CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <!-- Owl Carousel Assets -->
@@ -36,11 +42,12 @@
       
       	<div id="log-in-head">
         	<h1>Log in</h1>
-            <div id="logo"><a href="#"><img src="#" alt="Logo"></a></div>
+            <div id="logo"><a href="#"><img src="/img/logo.png" alt="Logo"></a></div>
         </div>
         
         <div class="form-output">
-        	<form>
+         <form>
+            {{ csrf_field()}}
 				<div class="form-group label-floating">
 					<label class="control-label">Your Email</label>
 					<input class="form-control" name="email" placeholder="Email" type="email">

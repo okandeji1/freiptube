@@ -4,11 +4,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ config('app.name', 'Freiptube')}}</title>
-        <meta name="keywords" content="Blog website templates" />
-        <meta name="description" content="Author - Personal Blog Wordpress Template">
-        <meta name="author" content="Rabie Elkheir">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="stream video online " />
+        <meta name="description" content="Author - Personal video tube">
+        <meta name="author" content="Soliu F. Okandeji">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- CSRF TOKEN -->
+        <meta name="csrf-token" content="{{csrf_token()}}">
+        <script>
+			window.Laravel = { csrfToken: '{{ csrf_token()}}'}
+		</script>
+
+	    <title>{{ config('app.name', 'Freiptube')}}</title>
         <!-- Bootstrap Core CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <!-- Owl Carousel Assets -->
@@ -28,6 +34,12 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+		<style>
+		 .d-none {
+			 display: none;
+		 }
+		</style>
+
     </head>
 
     <body class="sing-up-page">
@@ -36,11 +48,12 @@
       
       	<div id="log-in-head">
         	<h1>Sing Up</h1>
-            <div id="logo"><a href="#"><img src="#" alt="Logo"></a></div>
+            <div id="logo"><a href="#"><img src="/img/logo.png" alt="Logo"></a></div>
         </div>
         
         <div class="form-output">
-        	<form>
+          <form id="reg-form" onsubmit="return sendData()" action="/register" method="post">
+		  @csrf
             <div class="form-group label-floating">
 					<label class="control-label">First Name</label>
 					<input class="form-control" name="firstname" id="firstname" placeholder="First Name" type="text">
@@ -85,9 +98,10 @@
 						</label>
 					</div>
 				</div>
-                
-			  <a type="submit" class="btn btn-lg btn-primary full-width" onclick="sendData();">Complete sign up !</a>
 
+				<div class="alert alert-danger d-none" id="msg"></div>
+                
+			  <button type="submit" class="btn btn-lg btn-primary full-width">Complete sign up !</button>
 			  <div class="or"></div>
 
 				<a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fa fa-facebook" aria-hidden="true"></i>sign up with Facebook</a>
@@ -103,14 +117,11 @@
 	</body>
 
 </html>
-
 <script src="/js/jquery-3.2.1.min.js"></script>
-
-
 <script>
 
 function sendData(){
-	// Get user data
+	// Get user input value
 	let firstname = document.getElementById('firstname').value;
 	let lastname = document.getElementById('lastname').value;
 	let email = document.getElementById('email').value;
@@ -118,12 +129,48 @@ function sendData(){
 	let cpassword = document.getElementById('cpassword').value;
 	let gender = document.getElementById('gender').value;
 	let dob = document.getElementById('dob').value;
-	console.log(firstname)
+// Checking for validation
+	if(firstname === '' || firstname === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please first name is required';
+		return false
+	}
 
-	if(typeof firstname === '' || firstname === 'undefined'){
-		alert('This field cannot be empty!');
+	if(lastname === '' || lastname === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please last name is required';
+		return false
+	}
+
+	if(email === '' || email === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please email is required';
+		return false
+	}
+
+	if(password === '' || password === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please password is required';
+		return false
+	}
+
+	if(cpassword === '' || cpassword != password){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Password do not match';
+		return false
+	}
+
+	if(gender === '' || gender === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please select a gender';
+		return false
+	}
+
+	if(dob === '' || dob === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please confirm your date of birth';
+		return false
 	}
 }
 
 </script>
-

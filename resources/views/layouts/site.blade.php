@@ -20,7 +20,7 @@
         <!-- Bootstrap Core CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <!-- Owl Carousel Assets -->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
         <!--Google Fonts-->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
         <!-- Main CSS -->

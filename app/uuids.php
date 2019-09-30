@@ -1,9 +1,10 @@
 namespace App;
-use Webpaster\Uuid\Uuid;
+use Webpatser\Uuid\Uuid;
+use Illuminate\Database\Eloquent\Model;
 
 trait Uuids
 {
-    protected static function boot()
+    protected static function bootUuids()
     {
         parent::boot();
         static::creating(function($model){

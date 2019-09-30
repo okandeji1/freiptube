@@ -24,21 +24,21 @@
                 <ul class="top-menu">
                     <li><a href="@">home</a></li>
                     <li><a href="#">trending</a></li>
-                    <li><a href="14-history.html">history</a></li>
+                    <li><a href="#">history</a></li>
                 </ul>
             </div><!-- // col-md-4 -->
             @guest
             <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs hidden-sm">
-                  <div class="dropdown mr-3">
-                    <a data-toggle="dropdown" href="/login" class="user-area">
-                        <i class="fa fa-signin text-danger">Login</i>
-                    </a>
-                </div>
-                <div class="ml-5">
-                    <a data-toggle="dropdown" href="/login" class="user-area mr-5">
-                        <i class="fa fa-signin text-danger">SignUp</i>
-                    </a>
-                </div>
+                <ul class="top-menu">
+                    <li><a href="/login" class="user-area">
+                            <i class="fa fa-sign-in mr-5"> Login</i>
+                        </a>
+                    </li>
+                    <li><a href="/register" class="user-area">
+                            <i class="fa fa-user-circle mr-5"> Sign Up</i>
+                        </a>
+                    </li>
+                </ul>
             </div>
             @else
             <div class="col-lg-2 col-md-2 col-sm-4 hidden-xs hidden-sm">

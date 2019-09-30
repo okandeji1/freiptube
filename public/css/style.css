@@ -366,11 +366,11 @@ header a.user-area h3{
 	margin-left: 0px;
 	}
 header a.user-area .fa{
-	position: absolute;
+	/* position: absolute; */
 	top: 40%;
 	right: 10px;
 	font-size: 17px;
-	color: #fefefe;
+	/* color: #494141; */
 }	
 header ul.dropdown-menu-friend-requests{
 	min-width:300px;
@@ -1339,9 +1339,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	background-color: #FFF;
 	padding: 30px;
 	}
-.sing-up-page{
-	background-color: #ff5e3a;
-}	
+	
 .sing-up-page:after{
 	content:" ";
 	width: 100%;
@@ -1352,12 +1350,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	top: 0px;
 	z-index: -1;
 	background-attachment: fixed;
-	background-image: url(../demo_img/sing-up-ba.jpg);
+	background-image: url(../img/mic.png);
 	opacity: 0.2;
+	background-size: cover;
 	}	
-.log_in_page{
-	background-color: #237f81;
-}	
+
 .log_in_page:after{
 	content:" ";
 	width: 100%;
@@ -1368,7 +1365,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	top: 0px;
 	z-index: -1;
 	background-attachment: fixed;
-	background-image: url(../demo_img/log-in-ba.jpg);
+	background-image: url(../img/logo.png);
     opacity: 0.2;
 	}	
 .log-in-form{

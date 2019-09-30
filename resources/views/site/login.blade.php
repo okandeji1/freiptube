@@ -15,6 +15,8 @@
         </script>
 
         <title>{{ config('app.name', 'Freiptube')}}</title>
+        <!-- Favicon -->
+        <link rel="icon" href="/img/logoico.ico" type="image/ico" sizes="16x16">
         <!-- Bootstrap Core CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <!-- Owl Carousel Assets -->

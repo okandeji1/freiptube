@@ -47,14 +47,15 @@
     <body class="sing-up-page">
       <!--======= log_in_page =======-->
       <div id="log-in" class="site-form log-in-form">
+	  @include('partials.messages')
       
       	<div id="log-in-head">
-        	<h1>Sing Up</h1>
+        	<h1>Sign Up</h1>
             <div id="logo"><a href="#"><img src="/img/logo.png" alt="Logo"></a></div>
         </div>
         
         <div class="form-output">
-          <form id="reg-form" onsubmit="return sendData()" action="/register" method="post">
+          <form onsubmit="return sendData()" action="/register" method="post">
 		  @csrf
             <div class="form-group label-floating">
 					<label class="control-label">First Name</label>
@@ -86,11 +87,6 @@
 						<option value="female">Female</option>
 					</select>
 				</div>
-
-				<div class="form-group label-floating">
-					<label class="control-label">Date Of Birth</label>
-					<input class="form-control" name="dob" placeholder="Date Of Birth" id="dob" type="date">
-				</div>
                 
 				<div class="remember">
 					<div class="checkbox">
@@ -119,7 +115,6 @@
 	</body>
 
 </html>
-<script src="/js/jquery-3.2.1.min.js"></script>
 <script>
 
 function sendData(){
@@ -130,7 +125,6 @@ function sendData(){
 	let password = document.getElementById('password').value;
 	let cpassword = document.getElementById('cpassword').value;
 	let gender = document.getElementById('gender').value;
-	let dob = document.getElementById('dob').value;
 // Checking for validation
 	if(firstname === '' || firstname === 'undefined'){
 		document.getElementById('msg').classList.remove('d-none');
@@ -165,12 +159,6 @@ function sendData(){
 	if(gender === '' || gender === 'undefined'){
 		document.getElementById('msg').classList.remove('d-none');
 		document.getElementById('msg').innerHTML  = 'Please select a gender';
-		return false
-	}
-
-	if(dob === '' || dob === 'undefined'){
-		document.getElementById('msg').classList.remove('d-none');
-		document.getElementById('msg').innerHTML  = 'Please confirm your date of birth';
 		return false
 	}
 }

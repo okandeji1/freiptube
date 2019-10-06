@@ -35,12 +35,18 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <style>
+		 .d-none {
+			 display: none;
+		 }
+		</style>
 
     </head>
 
     <body class="log_in_page">
       <!--======= log_in_page =======-->
       <div id="log-in" class="site-form log-in-form">
+      @include('partials.messages')
       
       	<div id="log-in-head">
         	<h1>Log in</h1>
@@ -48,15 +54,15 @@
         </div>
         
         <div class="form-output">
-         <form>
+         <form onsubmit="return formData()" action="/login" method="post">
             {{ csrf_field()}}
 				<div class="form-group label-floating">
 					<label class="control-label">Your Email</label>
-					<input class="form-control" name="email" placeholder="Email" type="email">
+					<input class="form-control" name="email" id="email" placeholder="Email" type="email">
 				</div>
 				<div class="form-group label-floating">
 					<label class="control-label">Your Password</label>
-					<input class="form-control" name="password" placeholder="Password" type="password">
+					<input class="form-control" name="password" id="password" placeholder="Password" type="password">
 				</div>
                 
 				<div class="remember">
@@ -68,8 +74,8 @@
 					</div>
 					<a href="#" class="forgot">Forgot my Password</a>
 				</div>
-                
-				<a type="submit" class="btn btn-lg btn-primary full-width">Login</a>
+                <div class="alert alert-danger d-none" id="msg"></div>
+				<button type="submit" class="btn btn-lg btn-primary full-width">Login</button>
 
 			  <div class="or"></div>
 
@@ -87,3 +93,23 @@
 
 
 </html>
+<script>
+function formData(){
+	// Get user input value
+	let email = document.getElementById('email').value;
+	let password = document.getElementById('password').value;
+// Checking for validation
+	if(email === '' || email === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please email is required';
+		return false
+	}
+
+	if(password === '' || password === 'undefined'){
+		document.getElementById('msg').classList.remove('d-none');
+		document.getElementById('msg').innerHTML  = 'Please password is required';
+		return false
+	}
+}
+
+</script>

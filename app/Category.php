@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use Uuids;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +17,6 @@ class Category extends Model
       *
       * @var bool
       */
-
-    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +31,6 @@ class Category extends Model
      */
 
     protected $fillable = [
-        'name'
+        'name', 'uuid'
     ];
 }

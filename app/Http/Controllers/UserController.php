@@ -5,18 +5,10 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        if (Auth::User()) {
-            return redirect('/');
-        } else {
-            return redirect('/login');
-        }
-    }
-
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -32,9 +24,10 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $user->createToken('freiptube')->accessToken;
-            return response()->json(['success' => 'You have successfully logged in']);
+            
+            return redirect('/category');
         } else {
-            return response()->json(['error' => 'Invalid email or password']);
+            return back()->with(['error' => ' Invalid email or password']);
         }
     }
 
@@ -47,17 +40,28 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'cpassword' => 'required|same:password',
             'gender' => 'required',
-            'dob' => 'required',
         ]);
 
-        $data = $request->only(['firstname', 'lastname', 'email', 'password', 'gender', 'dob']);
+        $data = $request->only(['firstname', 'lastname', 'email', 'password', 'gender']);
         $data['password'] = bcrypt($data['password']);
-
-        $user = User::create($data);
-
-        $user->createToken('freiptube')->accessToken;
-
-        return redirect('/')->with('success', 'Registration successful! Please update your profile and start uploading');
+        
+        // Check if user already exit
+        if(User::where('email', '=', $data['email'])->exists()){
+            return back()->with('error', ' Email already exist!');
+        }else {
+            $user = new User();
+            $user->uuid = Uuid::uuid4();
+            $user->firstname = $data['firstname'];
+            $user->lastname = $data['lastname'];
+            $user->email = $data['email'];
+            $user->password = $data['password'];
+            $user->gender = $data['gender'];
+            $user->save();
+            // Create access token
+            $user->createToken('freiptube')->accessToken;
+            // Redirect user
+            return redirect('/login')->with('success', ' Registration successful! Please update your profile and start uploading');
+        }
     }
 
     public function logout(Request $request)

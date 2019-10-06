@@ -2,11 +2,11 @@
     <div id="sidebar-stick" >
     @guest
     <ul class="menu-sidebar">
-        <li><a href="01-home.html"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
         <li><a href="#"><i class="fa fa-bolt"></i>Trending</a></li>
-        <li><a href="14-history.html"><i class="fa fa-clock-o"></i>History</a></li>
+        <li><a href="#"><i class="fa fa-clock-o"></i>History</a></li>
         @else
-        <li><a href="10-upload.html"><i class="fa fa-upload"></i>upload</a></li>
+        <li><a href="/10-upload"><i class="fa fa-upload"></i>upload</a></li>
         <li><a href="#"><i class="fa fa-gear"></i>Settings</a></li>
     </ul>
     @endguest

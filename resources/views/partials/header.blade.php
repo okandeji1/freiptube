@@ -22,7 +22,7 @@
             </div><!-- // col-md-3 -->
             <div class="col-lg-3 col-md-3 col-sm-5 hidden-xs hidden-sm">
                 <ul class="top-menu">
-                    <li><a href="@">home</a></li>
+                    <li><a href="/">home</a></li>
                     <li><a href="#">trending</a></li>
                     <li><a href="#">history</a></li>
                 </ul>

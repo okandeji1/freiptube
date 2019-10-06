@@ -20,6 +20,9 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('site/signup');
 });
+Route::get('/category', function () {
+    return view('user/category');
+});
 Route::get('/10-upload', function () {
     return view('user/upload');
 });

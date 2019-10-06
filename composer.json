@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "freiptube/freiptube",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The Video Streamer.",
     "keywords": [
-        "framework",
-        "laravel"
+        "video",
+        "Stream video online",
+        "Watch video",
+        "upload video"
     ],
     "license": "MIT",
     "require": {

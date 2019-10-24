@@ -65,7 +65,7 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => $DATABASE_URL,
+            'url' => 'postgres://jiarnvrbdcogxw',
             'host' => 'ec2-174-129-220-12.compute-1.amazonaws.com',
             'port' => '5432',
             'database' => 'd7skpc4d5f7kd9',

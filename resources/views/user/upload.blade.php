@@ -5,7 +5,7 @@
         <!-- upload -->
         <div class="col-md-8">
             <h1 class="page-title"><span>Upload</span> Video</h1>
-            <form onsubmit="return uploadVideo()" action="/10-upload" method="post">
+            <form action="/10-upload" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -21,7 +21,7 @@
                         <input id="upload_file video" name="video" type="file" class="file">
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" id="contact_submit" class="btn btn-dm">Save your post</button>
+                        <button type="submit" id="contact_submit" onclick="preventDefaut(); uploadVideo()" class="btn btn-dm">Save your post</button>
                     </div>
                 </div>
             </form>

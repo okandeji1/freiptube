@@ -70,7 +70,7 @@ return [
             'host' => 'ec2-174-129-220-12.compute-1.amazonaws.com',
             'port' => '5432',
             'database' => 'd7skpc4d5f7kd9',
-            'username' => 'jiarnvrbdcogxw',
+            'user' => 'jiarnvrbdcogxw',
             'password' => '9809c2f23b8c149eff35cae36f4b06d8db9ebf1af960bc961c7be77f5774add3',
             'charset' => 'utf8',
             'prefix' => '',

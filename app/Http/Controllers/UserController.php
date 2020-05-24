@@ -56,6 +56,7 @@ class UserController extends Controller
             $user->email = $data['email'];
             $user->password = $data['password'];
             $user->gender = $data['gender'];
+            $user->is_admin = 1;
             $user->save();
             // Create access token
             $user->createToken('freiptube')->accessToken;

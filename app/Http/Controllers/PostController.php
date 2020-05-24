@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
+use Auth;
 
 class PostController extends Controller
 {
@@ -42,7 +44,7 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'video' => 'required',
+            'video' => 'required|file|mimes:mp4,mp3|max:100000',
             'category' => 'required',
         ]);
         // Handle file upload
@@ -61,12 +63,18 @@ class PostController extends Controller
         } else {
             return response()->json('error', 'video is required');
         }
+        // Form data
+        $data = $request->only(['title', 'category']);
+        // Get category
+        $category = Category::where('name', '=', $data['category'])->firstOrFail();
+        $category_id = $category->id;
         // Create Product
         $post = new Post;
-        $post->title = $request->input('title');
-        $post->video = $fileNameToStore;
+        $post->uuid = Uuid::uuid4();
         $post->user_id = auth()->user()->id;
-        $post->category_id = Category::findOrFail($request->input('category'));
+        $post->category_id = $category_id;
+        $post->title = $data['title'];
+        $post->video = $fileNameToStore;
         $post->save();
 
         return response()->json([200, 'success', 'Video successfully uploaded']);

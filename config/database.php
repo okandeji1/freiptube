@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-$DATABASE_URL = parse_url(getenv("postgres://jiarnvrbdcogxw:9809c2f23b8c149eff35cae36f4b06d8db9ebf1af960bc961c7be77f5774add3@ec2-174-129-220-12.compute-1.amazonaws.com:5432/d7skpc4d5f7kd9
-"));
+$DATABASE_URL = parse_url("postgres://jiarnvrbdcogxw:9809c2f23b8c149eff35cae36f4b06d8db9ebf1af960bc961c7be77f5774add3@ec2-174-129-220-12.compute-1.amazonaws.com:5432/d7skpc4d5f7kd9");
 return [
 
     /*
@@ -66,17 +65,16 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => 'postgres://jiarnvrbdcogxw',
-            'host' => 'ec2-174-129-220-12.compute-1.amazonaws.com',
-            'port' => '5432',
-            'database' => 'd7skpc4d5f7kd9',
-            'user' => 'jiarnvrbdcogxw',
-            'password' => '9809c2f23b8c149eff35cae36f4b06d8db9ebf1af960bc961c7be77f5774add3',
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'schema' => 'public',
-            'sslmode' => 'prefer',
+            'sslmode' => 'require',
         ],
 
         'sqlsrv' => [

@@ -25,6 +25,24 @@ class PostController extends Controller
     }
 
     /**
+     * Fetch category
+     */
+    public function upload()
+    {
+        if (Auth::guest()) {
+            //is a guest so redirect
+            return redirect('/login');
+        }
+        try {
+            //code...
+            $categories = Category::all();
+            return view('user/upload')->with('categories', $categories);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -44,40 +62,35 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'video' => 'required|file|mimes:mp4,mp3|max:100000',
+            'video' => 'required|file|mimes:mp4|max:1000000',
             'category' => 'required',
         ]);
+        // Variables
+        $title = $request->title;
+        $category = $request->category;
+        $video = request()->file('video');
+        $path = $video->store('videos');
         // Handle file upload
+        try {
+            
+            // Get category
+            $cat = Category::where('name', '=', $category)->firstOrFail();
+            $category_id = $cat->id;
+            // Create Product
+            $post = new Post;
+            $post->uuid = Uuid::uuid4();
+            $post->user_id = auth()->user()->id;
+            $post->category_id = $category_id;
+            $post->title = $title;
+            $post->video = $path;
+            $post->save();
 
-        if ($request->hasFile('video')) {
-            // Get file name with the extension
-            $filenameWithExt = $request->file('video')->getClientOriginalName();
-            // Get just file name
-            $fileName = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just the extension
-            $extension = $request->file('video')->getClientOriginalExtension();
-            // File nameto store
-            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
-            // Upload video
-            \Image::make($request->file('video'))->save(public_path('posts/') . $fileNameToStore);
-        } else {
-            return response()->json('error', 'video is required');
+        return back()->with('success', 'Video successfully uploaded');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return back()->with('error', 'Unable to upload video' .$th);
         }
-        // Form data
-        $data = $request->only(['title', 'category']);
-        // Get category
-        $category = Category::where('name', '=', $data['category'])->firstOrFail();
-        $category_id = $category->id;
-        // Create Product
-        $post = new Post;
-        $post->uuid = Uuid::uuid4();
-        $post->user_id = auth()->user()->id;
-        $post->category_id = $category_id;
-        $post->title = $data['title'];
-        $post->video = $fileNameToStore;
-        $post->save();
-
-        return response()->json([200, 'success', 'Video successfully uploaded']);
+        
     }
 
     /**

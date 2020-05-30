@@ -6,6 +6,8 @@
         <li><a href="#"><i class="fa fa-bolt"></i>Trending</a></li>
         <li><a href="#"><i class="fa fa-clock-o"></i>History</a></li>
         @else
+        <li><a href="#"><i class="fa fa-user-plus"></i>Users</a></li>
+        <li><a href="/admin/category"><i class="fa fa-bucket"></i>Category</a></li>
         <li><a href="/10-upload"><i class="fa fa-upload"></i>upload</a></li>
         <li><a href="#"><i class="fa fa-gear"></i>Settings</a></li>
     </ul>

@@ -11,29 +11,32 @@
         <div class="col-md-8">
             @include('partials.messages')
             <h1 class="page-title"><span>Upload</span> Video</h1>
-            <form onsubmit="return uploadVideo()" action="/10-upload" method="post">
+            <form onsubmit="return uploadVideo()" action="/10-upload" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <label>Post Title</label>
                         <input type="text" name="title" id="title" class="form-control :class="{ 'is-invalid': form.errors.has('title') }" placeholder="Post Title">
                         <has-error :form="form" field="title"></has-error>
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-group col-md-6">
                         <label>Post Category</label>
-                        <input type="text" name="category" id="category" class="form-control :class="{ 'is-invalid': form.errors.has('category') }" placeholder="Post Category">
+                        <select name="category" id="category" class="form-control :class="{ 'is-invalid': form.errors.has('category') }">
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->name}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
                         <has-error :form="form" field="category"></has-error>
                     </div>
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <label>Video upload</label>
                         <input id="upload_file video" name="video" type="file" class="file :class="{ 'is-invalid': form.errors.has('video') }">
                         <has-error :form="form" field="video"></has-error>
                     </div>
                     <div class="alert alert-danger d-none" id="msg"></div>
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <button type="submit" id="contact_submit" class="btn btn-dm">Save your post</button>
                     </div>
-                </div>
             </form>
             <div class="alert alert-danger d-none" id="msg"></div>
         </div><!-- // col-md-8 -->

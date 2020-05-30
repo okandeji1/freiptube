@@ -34,10 +34,6 @@
                             <i class="fa fa-sign-in mr-5"> Login</i>
                         </a>
                     </li>
-                    <li><a href="/register" class="user-area">
-                            <i class="fa fa-user-circle mr-5"> Sign Up</i>
-                        </a>
-                    </li>
                 </ul>
             </div>
             @else

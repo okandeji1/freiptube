@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Uuid;
+use App\Post;
 
-class CategoryController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            //code...
+            $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+            return view('index')->with('posts', $posts);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th;
+        }
     }
 
     /**
@@ -36,32 +42,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'category' => 'required',
-        ]);
-
-        $category = $request->category;
-        
-        // Check if user already exit
-        if(Category::where('name', '=', $category)->exists()){
-            return back()->with('error', ' Category already exist!');
-        }else {
-            $cat = new Category();
-            $cat->uuid = Uuid::uuid4();
-            $cat->name = $category;
-            $cat->save();
-            // Redirect user
-            return back()->with('success', ' Category added successfully');
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
     }
@@ -69,10 +59,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         //
     }
@@ -81,10 +71,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -92,10 +82,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
         //
     }

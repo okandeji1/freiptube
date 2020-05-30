@@ -16,17 +16,17 @@
         
         <title>{{ config('app.name', 'Freiptube')}}</title>
         <!-- Favicon -->
-        <link rel="shortcut icon" href="/img/logoico.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('/img/logoico.ico')}}" type="image/x-icon">
         <!-- Bootstrap Core CSS -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Owl Carousel Assets -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
         <!--Google Fonts-->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
         <!-- Main CSS -->
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="{{asset('/css/style.css')}}" />
         <!-- Responsive CSS -->
-        <link rel="stylesheet" href="/css/responsive.css" />
+        <link rel="stylesheet" href="{{asset('/css/responsive.css')}}" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,12 +65,12 @@
 		</div>
       </div>
 
-<script src="/js/jquery-3.2.1.min.js"></script>
-<script src="/js/jquery.sticky-kit.min.js"></script>
-<script src="/js/custom.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/imagesloaded.pkgd.min.js"></script>
-<script src="/js/grid-blog.min.js"></script>
+<script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('/js/jquery.sticky-kit.min.js')}}"></script>
+<script src="{{asset('/js/custom.js')}}"></script>
+<script src="{{asset('/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/js/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{asset('/js/grid-blog.min.js')}}"></script>
 
 
 	</body>

@@ -1,77 +1,70 @@
 <!DOCTYPE html>
-<html>
-
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="keywords" content="Blog website templates" />
-        <meta name="description" content="Author - Personal Blog Wordpress Template">
-        <meta name="author" content="Rabie Elkheir">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- CSRF TOKEN -->
-        <meta name="csrf-token" content="{{csrf_token()}}">
-        <script>
-            window.Laravel = { csrfToken: '{{ csrf_token()}}'}
-        </script>
-        
-        <title>{{ config('app.name', 'Freiptube')}}</title>
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="{{asset('/img/logoico.ico')}}" type="image/x-icon">
-        <!-- Bootstrap Core CSS -->
-        <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-        <!-- Owl Carousel Assets -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
-        <!--Google Fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,700|Roboto:300,400,500,700,900|Ubuntu:300,300i,400,400i,500,500i,700" rel="stylesheet">
-        <!-- Main CSS -->
-        <link rel="stylesheet" href="{{asset('/css/style.css')}}" />
-        <!-- Responsive CSS -->
-        <link rel="stylesheet" href="{{asset('/css/responsive.css')}}" />
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <style>
-            .d-none {
-                display: none;
-            }
-        </style>
-
-    </head>
-
-    <body>
-      <!--======= header =======-->
-      @include('partials.header')
-      <!-- // header -->
-      <!-- main category -->
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Vlog">
+      <meta name="author" content="Okandeji">
+      <title>{{ config('app.name', 'Freiptube') }}</title>
+      <!-- Bootstrap core CSS-->
+      <link href="{{asset('/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+      <!-- Custom fonts for this template-->
+      <link href="{{asset('/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+      <!-- Custom styles for this template-->
+      <link href="{{asset('/css/osahan.css')}}" rel="stylesheet">
+      <!-- Owl Carousel -->
+      <link rel="stylesheet" href="{{asset('/vendor/owl-carousel/owl.carousel.css')}}">
+      <link rel="stylesheet" href="{{asset('/vendor/owl-carousel/owl.theme.css')}}">
+      <!-- Favicon Icon -->
+      <link rel="icon" type="image/ico" href="{{asset('/img/logot.ico')}}">
+   </head>
+   <body id="page-top">
+    <!-- Navbar -->
       @include('partials.navbar')
-      <!-- // main-category -->
-
-	  <div class="site-output">
-      	<div class="col-md-2 no-padding-left hidden-sm hidden-xs">
-        	@include('partials.sidebar')
-            <!-- // left-sidebar -->
-        </div>
-        <!-- // col-md-2 -->
-
-        <div id="all-output" class="col-md-10">
-            @include('partials.messages')
-        	@yield('content')
-
-		</div>
+      <!-- Navbar -->
+      <div id="wrapper">
+         <!-- Sidebar -->
+         @include('partials.sidebar')
+         <div id="content-wrapper">
+            @yield('content')
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            @include('partials.footer')
+         </div>
+         <!-- /.content-wrapper -->
       </div>
-
-<script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('/js/jquery.sticky-kit.min.js')}}"></script>
-<script src="{{asset('/js/custom.js')}}"></script>
-<script src="{{asset('/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('/js/imagesloaded.pkgd.min.js')}}"></script>
-<script src="{{asset('/js/grid-blog.min.js')}}"></script>
-
-
-	</body>
+      <!-- /#wrapper -->
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+      </a>
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                  </button>
+               </div>
+               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+               <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <a class="btn btn-primary" href="login.html">Logout</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Bootstrap core JavaScript-->
+      <script src="{{asset('/vendor/jquery/jquery.min.js')}}"></script>
+      <script src="{{asset('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="{{asset('/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+      <!-- Owl Carousel -->
+      <script src="{{asset('/vendor/owl-carousel/owl.carousel.js')}}"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="{{asset('/js/custom.js')}}"></script>
+   </body>
 </html>

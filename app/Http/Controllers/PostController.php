@@ -62,11 +62,13 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'video' => 'required|file|mimes:mp4|max:1000000',
+            'description' => 'required',
             'category' => 'required',
+            'video' => 'required|file|mimes:mp4|max:1000000',
         ]);
         // Variables
         $title = $request->title;
+        $description = $request->description;
         $category = $request->category;
         $video = request()->file('video');
         $path = $video->store('videos');
@@ -82,6 +84,7 @@ class PostController extends Controller
             $post->user_id = auth()->user()->id;
             $post->category_id = $category_id;
             $post->title = $title;
+            $post->description = $description;
             $post->video = $path;
             $post->save();
 

@@ -19,7 +19,7 @@ class Post extends Model
      */
 
     protected $fillable = [
-        'uuid', 'title', 'video', 'user_id', 'category_id'
+        'uuid', 'title', 'description', 'video', 'user_id', 'category_id'
     ];
 
     public function user()

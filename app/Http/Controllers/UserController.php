@@ -25,7 +25,7 @@ class UserController extends Controller
             $user = Auth::user();
             $user->createToken('freiptube')->accessToken;
             
-            return redirect('/category');
+            return redirect('/account');
         } else {
             return back()->with(['error' => ' Invalid email or password']);
         }

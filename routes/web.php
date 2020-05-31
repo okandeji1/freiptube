@@ -18,8 +18,8 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('site/signup');
 });
-Route::get('/category', function () {
-    return view('user/category');
+Route::get('/account', function () {
+    return view('user/account');
 });
 Route::get('/admin/category', function () {
     if (Auth::guest()) {

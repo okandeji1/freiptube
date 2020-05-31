@@ -166,26 +166,31 @@
                 <h6>Featured Videos</h6>
             </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="video-card">
-                <div class="video-card-image">
-                    <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
-                    <a href="#"><img class="img-fluid" src="img/v1.png" alt=""></a>
-                    <div class="time">3:50</div>
+            @foreach ($posts as $post)
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="video-card">
+                        <div class="video-card-image">
+                            <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
+                            <video controls loop poster="/storage/{{$post->video}}">
+                                <source src="/storage/{{$post->video}}" type="video/mp4" >
+                            </video>
+                            <div class="time">3:50</div>
+                        </div>
+                        <div class="video-card-body">
+                            <div class="video-title">
+                                <a href="#">{{$post->title}}</a>
+                            </div>
+                            <div class="video-page text-success">
+                                {{$post->category->name}}  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
+                            </div>
+                            <div class="video-view">
+                                1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="video-card-body">
-                    <div class="video-title">
-                        <a href="#">There are many variations of passages of Lorem</a>
-                    </div>
-                    <div class="video-page text-success">
-                        Education  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
-                    </div>
-                    <div class="video-view">
-                        1.8M views &nbsp;<i class="fas fa-calendar-alt"></i> 11 Months ago
-                    </div>
-                </div>
-            </div>
-            </div>
+            @endforeach
+            
             <div class="col-xl-3 col-sm-6 mb-3">
             <div class="video-card">
                 <div class="video-card-image">

@@ -18,7 +18,13 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('site/signup');
 });
+Route::post('/register', 'UserController@register');
+
 Route::get('/account', function () {
+    if (Auth::guest()) {
+        //is a guest so redirect
+        return redirect('/login');
+    }
     return view('user/account');
 });
 Route::get('/admin/category', function () {
@@ -33,6 +39,5 @@ Route::post('/admin/add-category', 'CategoryController@store');
 Route::get('/10-upload', 'PostController@upload');
 Route::post('/10-upload', 'PostController@store')->name('upload');
 Route::post('/login', 'UserController@login')->name('login');
-Route::post('/register', 'UserController@register');
 Route::post('/categories', 'PostController@index')->name('getCategories');
 Route::get('/logout', 'UserController@logout')->name('logout');

@@ -70,22 +70,24 @@ class PostController extends Controller
         $title = $request->title;
         $description = $request->description;
         $category = $request->category;
-        $video = request()->file('video');
-        $path = $video->store('videos');
-        // Handle file upload
+        
         try {
-            
+            $post = new Post;
+            // Handle file upload
+            if($request->hasFile('video')){
+                $video = request()->file('video')->store('videos', 'public');
+                $post->video = $video; 
+            }
             // Get category
             $cat = Category::where('name', '=', $category)->firstOrFail();
             $category_id = $cat->id;
             // Create Product
-            $post = new Post;
             $post->uuid = Uuid::uuid4();
             $post->user_id = auth()->user()->id;
             $post->category_id = $category_id;
             $post->title = $title;
             $post->description = $description;
-            $post->video = $path;
+            $post->video = $video;
             $post->save();
 
         return back()->with('success', 'Video successfully uploaded');

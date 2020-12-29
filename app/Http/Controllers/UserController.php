@@ -33,6 +33,7 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'firstname' => 'required|max:50',
             'lastname' => 'required|max:50',
@@ -43,24 +44,28 @@ class UserController extends Controller
         ]);
 
         $data = $request->only(['firstname', 'lastname', 'email', 'password', 'gender']);
-        $data['password'] = bcrypt($data['password']);
-        
-        // Check if user already exit
-        if(User::where('email', '=', $data['email'])->exists()){
-            return back()->with('error', ' Email already exist!');
-        }else {
-            $user = new User();
-            $user->uuid = Uuid::uuid4();
-            $user->firstname = $data['firstname'];
-            $user->lastname = $data['lastname'];
-            $user->email = $data['email'];
-            $user->password = $data['password'];
-            $user->gender = $data['gender'];
-            $user->save();
-            // Create access token
-            $user->createToken('freiptube')->accessToken;
-            // Redirect user
-            return redirect('/login')->with('success', ' Registration successful! Please update your profile and start uploading');
+        $hashPassword = bcrypt($data['password']);
+
+        try {
+            // Check if user already exit
+            if(User::where('email', '=', $data['email'])->exists()){
+                return back()->with('error', ' Email already exist!');
+            }else {
+                $user = new User();
+                $user->uuid = Uuid::uuid4();
+                $user->firstname = $data['firstname'];
+                $user->lastname = $data['lastname'];
+                $user->email = $data['email'];
+                $user->password = $hashPassword;
+                $user->gender = $data['gender'];
+                $user->save();
+                // Create access token
+                $user->createToken('freiptube')->accessToken;
+                // Redirect user
+                return redirect('/login')->with('success', ' Registration successful! Please update your profile and start uploading');
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 

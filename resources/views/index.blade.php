@@ -178,14 +178,16 @@
                             <div class="video-card">
                                 <div class="video-card-image">
                                     <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
-                                    <video controls loop poster="/storage/{{ $post->video }}" width="300" height="200">
-                                        <source src="/storage/{{ $post->video }}" type="video/mp4">
-                                    </video>
+                                    <a href="/watch/{{ $post->uuid }} ">
+                                        <video width="300" height="200">
+                                            <source src="/storage/{{ $post->video }}" type="video/mp4">
+                                        </video>
+                                    </a>
                                     <div class="time">3:50</div>
                                 </div>
                                 <div class="video-card-body">
                                     <div class="video-title">
-                                        <a href="#">{{ $post->title }}</a>
+                                        <a href="/watch/{{ $post->uuid }}">{{ $post->title }}</a>
                                     </div>
                                     @if ($post->category->name === 'Music')
                                         <div class="video-page text-danger">
@@ -199,6 +201,20 @@
                                             {{ $post->category->name }} <a title="" data-placement="top"
                                                 data-toggle="tooltip" href="#" data-original-title="Verified"><i
                                                     class="fas fa-check-circle text-success"></i></a>
+                                        </div>
+                                    @endif
+                                    @if ($post->category->name === 'Sport')
+                                        <div class="video-page text-blue">
+                                            {{ $post->category->name }} <a title="" data-placement="top"
+                                                data-toggle="tooltip" href="#" data-original-title="Verified"><i
+                                                    class="fas fa-check-circle text-blue"></i></a>
+                                        </div>
+                                    @endif
+                                    @if ($post->category->name === 'News')
+                                        <div class="video-page text-warning">
+                                            {{ $post->category->name }} <a title="" data-placement="top"
+                                                data-toggle="tooltip" href="#" data-original-title="Verified"><i
+                                                    class="fas fa-check-circle text-warning"></i></a>
                                         </div>
                                     @endif
                                     <div class="video-view">

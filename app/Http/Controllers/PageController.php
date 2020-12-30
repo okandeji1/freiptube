@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Auth;
 
 class PageController extends Controller
 {
@@ -20,18 +21,24 @@ class PageController extends Controller
             return view('index')->with('posts', $posts);
         } catch (\Throwable $th) {
             //throw $th;
-            return $th;
         }
     }
 
     /**
-     * Show the form for creating a new resource.
+     * watch a single video.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function watch($uuid)
     {
-        //
+        try {
+            //code...
+            $post = Post::where('uuid', $uuid)->first();
+            $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+            return view('watch_video', compact(['post', $post, 'posts', $posts]));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
@@ -40,9 +47,13 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function account()
     {
-        //
+        if (Auth::guest()) {
+            //is a guest so redirect
+            return redirect('/login');
+        }
+        return view('user/account');
     }
 
     /**

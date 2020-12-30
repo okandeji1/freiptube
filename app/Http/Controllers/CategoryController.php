@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Auth;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -25,7 +26,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth::guest()) {
+            //is a guest so redirect
+            return redirect('/login');
+        }
+        return view('admin/category');
     }
 
     /**

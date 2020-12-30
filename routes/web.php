@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/watch/{uuid}', 'PageController@watch');
 Route::get('/login', function () {
     return view('site/login');
 });
@@ -20,20 +21,8 @@ Route::get('/register', function () {
 });
 Route::post('/register', 'UserController@register');
 
-Route::get('/account', function () {
-    if (Auth::guest()) {
-        //is a guest so redirect
-        return redirect('/login');
-    }
-    return view('user/account');
-});
-Route::get('/admin/category', function () {
-    if (Auth::guest()) {
-        //is a guest so redirect
-        return redirect('/login');
-    }
-    return view('admin/category');
-});
+Route::get('/account', 'PageController@account');
+Route::get('/admin/category', 'CategoryController@create');
 Route::post('/admin/add-category', 'CategoryController@store');
 
 Route::get('/10-upload', 'PostController@upload');
